@@ -1,3 +1,7 @@
+> Fork of [CardputerZero/Store](https://github.com/CardputerZero/Store) used by the
+> [CyberDeck Zero launcher](https://github.com/OSRdesign/cyberdeck-zero-launcher); the only change is apt without
+> recommends (`apt-get -y --no-install-recommends install` in the package helper, branch `no-install-recommends`).
+
 # CardputerZero AppStore
 
 Device-side APPLaunch application for browsing CardputerZero registries and installing apps from online registry metadata.

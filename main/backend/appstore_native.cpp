@@ -1820,7 +1820,9 @@ int package_helper(const std::string &action, const std::string &value, bool rei
                 auto audit = capture({"dpkg", "--audit"}, 64 * 1024);
                 if (audit.first != 0 || !audit.second.empty())
                     throw std::runtime_error("cannot resolve package dependencies while dpkg has unfinished packages");
-                command = {"apt-get", "-y"};
+                // CyberDeck Zero fork (owner decision 2026-11-13): never install Recommends. Apps declare
+                // the libraries they need in Depends; Recommends on a Lite board can multiply the download.
+                command = {"apt-get", "-y", "--no-install-recommends"};
                 if (force_overwrite)
                     command.insert(command.end(), {"-o", "Dpkg::Options::=--force-overwrite"});
                 if (reinstall) command.push_back("--reinstall");
